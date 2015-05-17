@@ -89,14 +89,22 @@ Pencil.prototype.setPixelSize = function(pixelSize) {
   this._redraw();
 };
 
-Pencil.prototype.clear = function() {
+Pencil.prototype._clearCanvas = function() {
   var canvas = this._canvasElem;
   var context = canvas.getContext('2d');
   context.clearRect(0, 0, canvas.width, canvas.height);
 };
 
+/**
+ * Erases all the pixels on the canvas
+ */
+Pencil.prototype.clear = function() {
+  this._clearCanvas();
+  this._pixels = {};
+};
+
 Pencil.prototype._redraw = function() {
-  this.clear();
+  this._clearCanvas();
   for(var x in this._pixels) {
     for(var y in this._pixels[x]) {
       this._renderPixel({x: x, y: y});
