@@ -200,6 +200,7 @@ Pencil.prototype._drawPixel = function(pxCoord) {
 Pencil.prototype._mousedownFn = function(e) {
   this._mousedown = true;
   this._currentPixel = this._getPixelFromEvent(e);
+  this._drawPixel(this._currentPixel);
 };
 
 Pencil.prototype._mousemoveFn = function(e) {
