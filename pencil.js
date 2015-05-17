@@ -103,6 +103,36 @@ Pencil.prototype.clear = function() {
   this._pixels = {};
 };
 
+Pencil._copyPixels = function(pixels) {
+  var copy = {};
+  for(var x in pixels) {
+    x = parseInt('' + x);
+    copy[x] = {};
+    for(var y in pixels[x]) {
+      y = parseInt('' + y);
+      copy[x][y] = pixels[x][y];
+    }
+  }
+  return copy;
+};
+
+/**
+ * @param {object} pixels A hash of pixel colors formatted as
+ * pixels[x][y] = color
+ */
+Pencil.prototype.loadPixels = function(pixels) {
+  this._pixels = Pencil._copyPixels(pixels);
+  this._redraw();
+};
+
+/**
+ * @returns {object} an object representing the canvas's current
+ * state. Individual pixel colors can be read via [x][y] accessors
+ */
+Pencil.prototype.getPixels = function() {
+  return Pencil._copyPixels(this._pixels);
+};
+
 Pencil.prototype._redraw = function() {
   this._clearCanvas();
   for(var x in this._pixels) {
