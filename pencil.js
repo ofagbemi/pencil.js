@@ -205,6 +205,7 @@ Pencil.prototype._mousedownFn = function(e) {
 
 Pencil.prototype._mousemoveFn = function(e) {
   if(this._mousedown !== true) { return; }
+  e.preventDefault();
   var pixel = this._getPixelFromEvent(e);
   var prevPixel = this._currentPixel;
   
