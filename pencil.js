@@ -34,7 +34,7 @@ var Pencil = function(canvasElem, options) {
  * @param {object} c1
  * @returns {object[]} an array of pixel coordinates
  */
-Pencil.bres = function(c0, c1) {
+Pencil._bres = function(c0, c1) {
   var pixels = [];
   
   var lt = c0.x < c1.x;
@@ -209,7 +209,7 @@ Pencil.prototype._mousemoveFn = function(e) {
   var pixel = this._getPixelFromEvent(e);
   var prevPixel = this._currentPixel;
   
-  var path = Pencil.bres(pixel, prevPixel);
+  var path = Pencil._bres(pixel, prevPixel);
   for(var i = 0; i < path.length; i++) {
     this._drawPixel(path[i]);
   }
