@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <script src="//use.typekit.net/lzf6sji.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+    <style type="text/css">
+      body {
+        font-family: 'clavo', sans-serif;
+        font-size: 12px;
+        
+        display: -webkit-flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -moz-box;
+        display: flex;
+        
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+
+        -webkit-align-items: center;
+           -moz-align-items: center;
+            -ms-align-items: center;
+                align-items: center;
+
+        -webkit-justify-content: center;
+           -moz-justify-content: center;
+            -ms-justify-content: center;
+                justify-content: center;
+      }
+      
+      input {
+        padding: 4px;
+        width: 100px;
+        outline: none;
+      }
+      
+      input:focus {
+        border: solid 1px #27a4ff;
+      }
+      
+      #wrapper {
+        margin-bottom: 90px;
+        text-align: center;
+      }
+      
+      #canvas {
+        border: solid 1px rgba(0, 0, 0, 0.11);
+        display: block;
+      }
+      
+      #controls {
+        margin-top: 11px;
+      }
+    </style>
+    <script type="text/javascript" src="pencil.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <canvas id="canvas" width="400" height="240"></canvas>
+      <div id="controls">
+        <label>
+          <span>Pixel size</span>
+          <input type="number" id="pixel-size" value="4">
+        </label>
+        <label>
+          <span>Color</span>
+          <input type="text" id="color" value="#24569b">
+        </label>
+        <button id="clear">Clear</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var canvas = document.getElementById('canvas');
+      var pencil = new Pencil(canvas, {pixelSize: 4, color: '#24569b'});
+      
+      var colorElem = document.getElementById('color');
+      var pixelSizeElem = document.getElementById('pixel-size');
+      var clearElem = document.getElementById('clear');
+      
+      colorElem.onkeyup = function() {
+        pencil.setColor(colorElem.value);
+      };
+      pixelSizeElem.onkeyup = function() {
+        pencil.setPixelSize(pixelSizeElem.value);
+      };
+      clearElem.onclick = function(e) {
+        e.preventDefault();
+        pencil.clear();
+      };
+    </script>
+  </body>
+</html>
